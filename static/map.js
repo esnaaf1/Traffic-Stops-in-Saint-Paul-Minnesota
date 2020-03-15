@@ -12,28 +12,43 @@ const startLocation = [44.95, -93.09];
 // Define colors in one place
 var min = 0;
 var max = 1;
-var strColor = 2;
-var colorByType = {
-    'TrafficStops': ["#FFFFFF", "#071696", "darkblue"],
-    'White': ["#FFFFFF", "#C0539E", "pink"],
-    'Black': ["#FFFFFF", "#1371BA", "blue"],
-    'Asian': ["#FFFFFF", "#06924A", "green"],
-    'Latino': ["#FFFFFF", "#5C396D", "purple"],
-    'NativeAmerican': ["#FFFFFF", "#FFD700", "yellow"],
-    'Other': ["#FFFFFF", "#F18C20", "orange"],
-    'Male': ["#FFFFFF", "#62B6E3", "lightblue"], 
-    'Female': ["#FFFFFF", "#EB88CB", "lightpink"],
-    'Searched': ["#FFFFFF", "#4F0617", "brown"],
-    'MaleSearched': ["#FFFFFF", "#0972AB", "darkblue"],
-    'FemaleSearched': ["#FFFFFF", "#F016AB", "darkpink"]
+var backColor = 0;
+var strColor = 1;
+var choroColor = {
+    'TrafficStops': ["#FFFFFF", "#071696"],
+    'White': ["#FFFFFF", "#C0539E"],
+    'Black': ["#FFFFFF", "#1371BA"],
+    'Asian': ["#FFFFFF", "#06924A"],
+    'Latino': ["#FFFFFF", "#5C396D"],
+    'NativeAmerican': ["#FFFFFF", "#FFD700"],
+    'Other': ["#FFFFFF", "#F18C20"],
+    'Male': ["#FFFFFF", "#62B6E3"], 
+    'Female': ["#FFFFFF", "#EB88CB"],
+    'Searched': ["#FFFFFF", "#4F0617"],
+    'MaleSearched': ["#FFFFFF", "#0972AB"],
+    'FemaleSearched': ["#FFFFFF", "#F016AB"]
+};
+var pinColor = {
+    'TrafficStops': ["#071696", "darkblue"],
+    'White': ["#C0539E", "pink"],
+    'Black': ["#1371BA", "blue"],
+    'Asian': ["#06924A", "green"],
+    'Latino': ["#5C396D", "purple"],
+    'NativeAmerican': ["#FFD700", "yellow"],
+    'Other': ["#F18C20", "orange"],
+    'Male': ["#62B6E3", "lightblue"], 
+    'Female': ["#EB88CB", "lightpink"],
+    'Searched': ["#4F0617", "brown"],
+    'MaleSearched': ["#0972AB", "darkblue"],
+    'FemaleSearched': ["#F016AB", "darkpink"]
 };
 
 // Define Plot X-Axis Labels
 var xAxisLabels = ['White', 'Black', 'Asian', 'Latino', 'Other', 'Native American'];
 var pieLabels = ['Male Not Searched', 'Female Not Searched', 'Male Searched', 'Female Searched'];
-var barColors = [colorByType.White[max], colorByType.Black[max], colorByType.Asian[max], colorByType.Latino[max],
-    colorByType.Other[max], colorByType.NativeAmerican[max]];
-var pieColors = [colorByType.Male[max],colorByType.Female[max],colorByType.MaleSearched[max],colorByType.FemaleSearched[max]];
+var barColors = [choroColor.White[max], choroColor.Black[max], choroColor.Asian[max], choroColor.Latino[max],
+choroColor.Other[max], choroColor.NativeAmerican[max]];
+var pieColors = [choroColor.Male[max],choroColor.Female[max],choroColor.MaleSearched[max],choroColor.FemaleSearched[max]];
 
 // // define the overlays
 var overlays = {
@@ -215,7 +230,7 @@ function createChoropleth(currentLayer, data)
         valueProperty: currentLayer.name,
 
         // Set color scale
-        scale: colorByType[currentLayer.name],
+        scale: choroColor[currentLayer.name],
 
         // Number of breaks in step range
         steps: 8,
@@ -321,7 +336,7 @@ function createPins(response)
             }
 
             var race = (response[i].Race).replace(/ +/g, "");
-            selectedIcon = createIcon(iconType, iconColor, colorByType[race][strColor], "square");
+            selectedIcon = createIcon(iconType, iconColor, pinColor[race][strColor], "square");
     
             var grid = response[i].Grid === "367" ? "267" : response[i].Grid;
 
@@ -364,12 +379,12 @@ function createPinLegend(legend)
         let liStyle3b = "</span></font></li>";
 
         pinLabels.push("<li style=list-style-type:none;text-align:center;\">" + "<h5><font color=\"black\">Icons</font></h5></li>");
-        pinLabels.push(liStyle1 + colorByType["White"][max] + liStyle2a + "White" + liStyle3a);
-        pinLabels.push(liStyle1 + colorByType["Black"][max] + liStyle2a + "Black" + liStyle3a);
-        pinLabels.push(liStyle1 + colorByType["Latino"][max] + liStyle2a + "Latino" + liStyle3a);
-        pinLabels.push(liStyle1 + colorByType["Asian"][max] + liStyle2a + "Asian" + liStyle3a);
-        pinLabels.push(liStyle1 + colorByType["Other"][max] + liStyle2a + "Other" + liStyle3a);
-        pinLabels.push(liStyle1 + colorByType["NativeAmerican"][max] + liStyle2a + "Native American" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["White"][backColor] + liStyle2a + "White" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["Black"][backColor] + liStyle2a + "Black" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["Latino"][backColor] + liStyle2a + "Latino" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["Asian"][backColor] + liStyle2a + "Asian" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["Other"][backColor] + liStyle2a + "Other" + liStyle3a);
+        pinLabels.push(liStyle1 + pinColor["NativeAmerican"][backColor] + liStyle2a + "Native American" + liStyle3a);
 
         pinLabels.push(liStyle1 + liStyle2b + "   Male" + liStyle3b);
         pinLabels.push(liStyle1 + liStyle2c + "   Female" + liStyle3b);
@@ -532,7 +547,7 @@ function plotMixedChart(scatterValues, barValues)
         y: scatterValues,
         type: 'scatter',
         name: 'Searched',
-        marker: { color: colorByType.Searched[max] }
+        marker: { color: choroColor.Searched[max] }
     };
   
     // Bar plot
