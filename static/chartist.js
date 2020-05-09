@@ -1,6 +1,7 @@
 
+//Java script file for the line graph using the Chartist library
 //*********** Start function declarations ***********/
-// 1. create a function to parse date into month-year
+// 1. create a function to parse a date into "month-year" format
 function parseDate (date)
 {
     var datePart = date.split('/');
@@ -130,9 +131,7 @@ d3.json("/trafficdata").then(function (response){
     
     
       // >>>> Chartlist animated time series ends here 
-      
-
-  
+        
 //****************** End d3.json data processing block**************
  
 }).catch( function(error){
