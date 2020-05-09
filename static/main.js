@@ -1,3 +1,4 @@
+// Main javascript file
 
 //*********** Start function declarations ***********/
 // 1. create a function to parse date into month-year
@@ -70,18 +71,7 @@ function createChartist(data)
   }, 
     {
     low: 0,
-    showLine: false,
-    // axisX: {
-    //   showLabel: true,
-    //   offset: 10
-    // },
-    // axisY: {
-    //   showLabel: true,
-    //   offset: 10
-    // },
-    // width: '800px',
-    // height: '200px',
-      
+    showLine: false,      
   });
   
   // >>>> Chartist aninamted time series chart code starts here...
@@ -160,7 +150,7 @@ function createPlotly(data, layout) {
 };
 
 //**************************************************/
-//***   Main d3 processing section                    */
+//***   Main d3 processing section starts here    */
 //*************************************************/
 d3.json('trafficdata').then(function(data) {
     console.log(data);
@@ -243,8 +233,6 @@ d3.json('trafficdata').then(function(data) {
 
     // setup the layout
     var layout = {
-          //  height: 600,
-          //  width: 800,
             barmode: 'stack',
               xaxis: {
                 domain: [0, 0.50],
@@ -292,7 +280,6 @@ d3.json('trafficdata').then(function(data) {
       var countbyCall = rateByCategory(Call,option);
       var countbyDriverSearched = rateByCategory(DriverSearched, option);
       var countbyVehicleSearched = rateByCategory(VehicleSearched, option);
-
 
       //update plotly traces
       var trace1 ={
