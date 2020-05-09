@@ -1,4 +1,5 @@
 
+# import dependencies
 import numpy as np
 
 import sqlalchemy
@@ -23,7 +24,7 @@ Base.prepare(engine, reflect=True)
 Stops = Base.classes.traffic_stops
 
 #################################################
-# Flask Setup
+# Flask server Setup
 #################################################
 app = Flask(__name__)
 # app.confg below was included to turn off caching in development.
@@ -31,7 +32,7 @@ app = Flask(__name__)
 # app.config['SEND_FILE_MAX_AGE_DEFAULT'] =0
 
 #################################################
-# Flask Routes
+# Create Flask server Routes
 #################################################
 # # html pages
 @app.route("/")
@@ -51,7 +52,7 @@ def map():
     webpage=render_template('map.html')
     return webpage
     
-#  Data routes
+#  Create data routes
 @app.route("/trafficdata")
 def trafficdata():
     # Create a session (link) from Python to the sqlite DB
