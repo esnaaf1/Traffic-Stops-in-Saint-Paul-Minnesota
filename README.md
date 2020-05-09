@@ -1,6 +1,12 @@
-# Data Analytics Bootcamp Project #2 documentation
-# Contributors: Beryl Kaczmarczik, Farshad Esnaashari, Katherine Rootes, Matt Pollari
+# TRAFFIC-STOPS-IN-SAINT-PAUL-MINNESOTA
 
+This project involves data visualization of  traffic stop incident within the city of Saint Paul, Minnesota collected from 1/1/2017 to 12/31/2018. The original data set was collected by police officers and shared through a Socrata powered platform. For more information on the original raw data, please refer to https://information.stpaul.gov/Public-Safety/Traffic-Stop-Dataset/kkd6-vvns" 
+
+The data is stored in a SQLite database. The visualization presents several interactive graphics to help the user navigate through the data set. The graphics leverage Chartist, Leaflet, MapBox, and Plotly javascript libraries. Bootstrap and Bootswatch libraries were used to format the website.
+
+### Contributors: Beryl Kaczmarczik, Farshad Esnaashari, Katherine Rootes, Matt Pollari
+
+## How to Use
 This documentation shows the steps needed to run the project website on your local
 computer.  
 
